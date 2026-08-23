@@ -22,15 +22,17 @@ import {
 import "./styles.css";
 
 const skills = [
-  ["Java", "Java 8/17, Core Java", Code2],
-  ["Spring Boot", "Spring MVC, REST, Data JPA", Server],
-  ["Microservices", "OpenFeign, RestTemplate, distributed systems", Sparkles],
-  ["Messaging", "Apache Kafka, asynchronous processing", MessageCircle],
-  ["Databases", "PostgreSQL, MySQL, Oracle, SQL tuning", Database],
-  ["DevOps", "Docker, Kubernetes, Maven, Jenkins, CI/CD", BriefcaseBusiness],
-  ["Observability", "Prometheus, Grafana, JVM/API metrics", CheckCircle2],
-  ["Testing", "JUnit, Mockito, unit testing", ShieldCheck]
+  ["Java",          "Java 8/17, Core Java",                          Code2],
+  ["Spring Boot",   "Spring MVC, REST, Data JPA",                    Server],
+  ["Microservices", "OpenFeign, RestTemplate, distributed systems",  Sparkles],
+  ["Kafka",         "Apache Kafka, asynchronous processing",         MessageCircle],
+  ["PostgreSQL",    "PostgreSQL, MySQL, Oracle, SQL tuning",         Database],
+  ["Docker",        "Docker, Kubernetes, Maven, Jenkins, CI/CD",     BriefcaseBusiness],
+  ["Observability", "Prometheus, Grafana, JVM/API metrics",          CheckCircle2],
+  ["Testing",       "JUnit, Mockito, unit testing",                  ShieldCheck]
 ];
+
+const stack = skills.map(([title]) => title);
 
 const experience = [
   "Developed a Microservices Proof of Concept using Java, Spring Boot, REST APIs, MySQL, Prometheus and Grafana.",
@@ -47,18 +49,35 @@ const experience = [
 
 function App() {
   const [open, setOpen] = React.useState(false);
+  const baseUrl = import.meta.env.BASE_URL;
+  const navRef = React.useRef(null);
 
   const closeMenu = () => setOpen(false);
+
+  React.useEffect(() => {
+    if (!open) return;
+    const handleOutsideClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [open]);
 
   return (
     <div className="app">
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
 
-      <header className="nav">
+      <header className="nav" ref={navRef}>
         <div className="nav-inner">
           <a className="brand" href="#home" onClick={closeMenu}>
-            <img src="/portfolio/profile.jpg" alt="AC" className="profile-photo v5"/>
+            <img src={`${baseUrl}profile.jpg`} alt="AC" className="profile-photo v5"/>
             <span>Arulmurugan C</span>
           </a>
 
@@ -88,7 +107,7 @@ function App() {
             </p>
             <div className="hero-actions">
               <a className="btn primary" href="#projects">View Projects <ArrowUpRight size={18} /></a>
-              <a className="btn primary" href="/portfolio/Arulmurugan_Product_Engineer_Resume.pdf" download>Download Resume <Download size={18} /></a>
+              <a className="btn primary" href={`${baseUrl}Arulmurugan_Product_Engineer_Resume.pdf`} download>Download Resume <Download size={18} /></a>
             </div>
             <div className="socials">
               <a href="https://github.com/Arulmurugan1" target="_blank" rel="noreferrer"><Github size={19} /> GitHub</a>
@@ -104,42 +123,23 @@ function App() {
                 <span>BackendEngineer.java</span>
               </div>
               <div className="code-body">
-			  {[
-				<>
-				  <span className="purple">public class</span>{" "}
-				  <span className="green">BackendEngineer</span> {"{"}
-				</>,
-				<>
-				  <span className="purple">private final</span>{" "}
-				  String[] stack = {"{"}
-				</>,
-				<><span className="string">"Java 17"</span>,</>,
-				<><span className="string">"Spring Boot"</span>,</>,
-				<><span className="string">"Microservices"</span>,</>,
-				<><span className="string">"Kafka"</span>,</>,
-				<><span className="string">"PostgreSQL"</span>,</>,
-				<><span className="string">"Docker"</span>,</>,
-				<><span className="string">"Kubernetes"</span></>,
-				<>{"};"}</>,
-				<>{"}"}</>
-			  ].map((line, index) => (
-				<div className="code-line" key={index}>
-				  <span className="line-number">
-					{String(index + 1).padStart(2, "0")}
-				  </span>
-
-				  <span
-					className={
-					  index >= 2 && index <= 8
-						? "indent code-content"
-						: "code-content"
-					}
-				  >
-					{line}
-				  </span>
-				</div>
-			  ))}
-			</div>
+                {[
+                  <><span className="purple">public class</span>{" "}<span className="green">BackendEngineer</span> {"{"}</>,
+                  <><span className="purple">private final</span>{" "}String[] stack = {"{"}</>,
+                  ...stack.map((s, i) => (
+                    <><span className="string">"{s}"</span>{i < stack.length - 1 ? "," : ""}</>
+                  )),
+                  <>{"};"}</>,
+                  <>{"}"}</>
+                ].map((line, index) => (
+                  <div className="code-line" key={index}>
+                    <span className="line-number">{String(index + 1).padStart(2, "0")}</span>
+                    <span className={index >= 2 && index <= stack.length + 1 ? "indent code-content" : "code-content"}>
+                      {line}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
