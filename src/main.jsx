@@ -58,7 +58,7 @@ function App() {
       <header className="nav">
         <div className="nav-inner">
           <a className="brand" href="#home" onClick={closeMenu}>
-            <img src="/portfolio/profile.jpg" alt="AC" className="profile-photo"/>
+            <img src="/portfolio/profile.jpg" alt="AC" className="profile-photo v5"/>
             <span>Arulmurugan C</span>
           </a>
 
