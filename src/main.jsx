@@ -56,10 +56,11 @@ function App() {
       <div className="ambient ambient-two" />
 
       <header className="nav">
-        <a className="brand" href="#home" onClick={closeMenu}>
-          <span className="brand-mark">AC</span>
-          <span>Arulmurugan C</span>
-        </a>
+        <div className="nav-inner">
+          <a className="brand" href="#home" onClick={closeMenu}>
+            <img src="/profile.jpg" alt="AC" className="profile-photo"/>
+            <span>Arulmurugan C</span>
+          </a>
 
         <button className="menu-btn" onClick={() => setOpen(!open)} aria-label="Toggle navigation">
           {open ? <X size={22} /> : <Menu size={22} />}
@@ -73,6 +74,7 @@ function App() {
             <Github size={17} /> GitHub
           </a>
         </nav>
+        </div>
       </header>
 
       <main>
@@ -86,7 +88,7 @@ function App() {
             </p>
             <div className="hero-actions">
               <a className="btn primary" href="#projects">View Projects <ArrowUpRight size={18} /></a>
-              <a className="btn secondary" href="/resume.pdf" download>Download Resume <Download size={18} /></a>
+              <a className="btn primary" href="/Arulmurugan_Product_Engineer_Resume.pdf" download>Download Resume <Download size={18} /></a>
             </div>
             <div className="socials">
               <a href="https://github.com/Arulmurugan1" target="_blank" rel="noreferrer"><Github size={19} /> GitHub</a>
