@@ -88,7 +88,7 @@ function App() {
             </p>
             <div className="hero-actions">
               <a className="btn primary" href="#projects">View Projects <ArrowUpRight size={18} /></a>
-              <a className="btn primary" href="/Arulmurugan_Product_Engineer_Resume.pdf" download>Download Resume <Download size={18} /></a>
+              <a className="btn primary" href={`${import.meta.env.BASE_URL}Arulmurugan_Product_Engineer_Resume.pdf`} download>Download Resume <Download size={18} /></a>
             </div>
             <div className="socials">
               <a href="https://github.com/Arulmurugan1" target="_blank" rel="noreferrer"><Github size={19} /> GitHub</a>
