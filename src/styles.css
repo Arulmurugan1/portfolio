@@ -23,6 +23,33 @@ a { color: inherit; text-decoration: none; }
 .ambient-one { background: #7767ff; top: -180px; right: -100px; }
 .ambient-two { background: #31cbb8; bottom: 10%; left: -250px; }
 
+.code-body {
+  padding: 25px 24px 29px;
+  min-height: 350px;
+  font: 12px/1.95 var(--mono);
+  color: #d9def0;
+  overflow: hidden;
+}
+
+.code-line {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: baseline;
+  min-height: 24px;
+  white-space: nowrap;
+}
+
+.line-number {
+  color: #3f485e;
+  user-select: none;
+  text-align: right;
+  padding-right: 14px;
+}
+
+.code-content.indent {
+  padding-left: 28px;
+}
+
 .nav { height: 78px; max-width: 1180px; margin: auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; position: relative; z-index: 10; }
 .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; letter-spacing: -.02em; }
 .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: linear-gradient(135deg, var(--accent), #5d9cff); font-size: 12px; }

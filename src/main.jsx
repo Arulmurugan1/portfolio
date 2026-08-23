@@ -101,23 +101,43 @@ function App() {
                 <div className="dots"><i /><i /><i /></div>
                 <span>BackendEngineer.java</span>
               </div>
-              <pre><code>
-<span className="muted">01</span> <span className="purple">public class</span> <span className="green">BackendEngineer</span> {"{"}
-<span className="muted">02</span>
-<span className="muted">03</span>   <span className="purple">private final</span> String[] stack = {"{"}
-<span className="muted">04</span>     <span className="string">"Java 17"</span>,
-<span className="muted">05</span>     <span className="string">"Spring Boot"</span>,
-<span className="muted">06</span>     <span className="string">"Microservices"</span>,
-<span className="muted">07</span>     <span className="string">"Kafka"</span>
-<span className="muted">08</span>   {"}"};
-<span className="muted">09</span>
-<span className="muted">10</span>   <span className="purple">void</span> <span className="green">build</span>() {"{"}
-<span className="muted">11</span>     scale();
-<span className="muted">12</span>     optimize();
-<span className="muted">13</span>     deliver();
-<span className="muted">14</span>   {"}"}
-<span className="muted">15</span> {"}"}
-              </code></pre>
+              <div className="code-body">
+			  {[
+				<>
+				  <span className="purple">public class</span>{" "}
+				  <span className="green">BackendEngineer</span> {"{"}
+				</>,
+				<>
+				  <span className="purple">private final</span>{" "}
+				  String[] stack = {"{"}
+				</>,
+				<><span className="string">"Java 17"</span>,</>,
+				<><span className="string">"Spring Boot"</span>,</>,
+				<><span className="string">"Microservices"</span>,</>,
+				<><span className="string">"Kafka"</span>,</>,
+				<><span className="string">"PostgreSQL"</span>,</>,
+				<><span className="string">"Docker"</span>,</>,
+				<><span className="string">"Kubernetes"</span></>,
+				<>{"};"}</>,
+				<>{"}"}</>
+			  ].map((line, index) => (
+				<div className="code-line" key={index}>
+				  <span className="line-number">
+					{String(index + 1).padStart(2, "0")}
+				  </span>
+
+				  <span
+					className={
+					  index >= 2 && index <= 8
+						? "indent code-content"
+						: "code-content"
+					}
+				  >
+					{line}
+				  </span>
+				</div>
+			  ))}
+			</div>
             </div>
           </div>
         </section>
