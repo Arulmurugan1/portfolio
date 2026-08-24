@@ -244,7 +244,7 @@ footer { max-width: 1200px; margin: auto; border-top: 1px solid var(--line); pad
   .nav-links.open { display: flex; }
   .nav-github { justify-content: center; }
   .hero, .two-col, .project-card { grid-template-columns: 1fr; }
-  .hero { padding: 50px 0 55px; min-height: auto; gap: 45px; }
+  .hero { padding: 50px 40px 55px; min-height: auto; gap: 45px; }
   .hero-card { max-width: 100%; width: 100%; justify-content: flex-start; }
   .code-window { max-width: 100%; width: 100%; }
   .skill-grid { grid-template-columns: repeat(2, 1fr); }
